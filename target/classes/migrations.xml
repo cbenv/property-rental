@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="1" author="Fantastix">
+
+        <createTable tableName="renter">
+            <column name="email" type="varchar(255)">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="password" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
+        </createTable>
+
+        <createTable tableName="manager">
+            <column name="email" type="varchar(255)">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="password" type="varchar(255)"/>
+            <column name="name" type="varchar(255)"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="city" type="varchar(255)"/>
+            <column name="state" type="varchar(2)"/>
+            <column name="zip" type="varchar(5)"/>
+        </createTable>
+
+        <createTable tableName="property">
+            <column autoIncrement="true" name="propertyID" type="int">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="name" type="varchar(255)"/>
+            <column name="managerEmail" type="varchar(255)"/>
+            <column name="price" type="double"/>
+            <column name="address" type="varchar(255)"/>
+            <column name="city" type="varchar(255)"/>
+            <column name="state" type="varchar(2)"/>
+            <column name="zip" type="varchar(5)"/>
+            <column name="accommodation" type="int"/>
+            <column name="bathrooms" type="double"/>
+            <column name="beds" type="int"/>
+            <column name="roomType" type="varchar(20)"/>
+        </createTable>
+
+        <createTable tableName="booking">
+            <column autoIncrement="true" name="bookingID" type="int">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="propertyID" type="int" />
+            <column name="renterEmail" type="varchar(255)" />
+            <column name="startDate" type="date"/>
+            <column name="endDate" type="date"/>
+            <column name="status" type="varchar(10)" defaultValue="PENDING"/>
+        </createTable>
+
+        <createTable tableName="feedback">
+            <column autoIncrement="true" name="feedbackID" type="int">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="propertyID" type="int" />
+            <column name="renterEmail" type="varchar(255)" />
+            <column name="rating" type="int"/>
+            <column name="comment" type="varchar(255)"/>
+            <column name="timestamp" type="datetime"/>
+        </createTable>
+
+        <createTable tableName="property_image">
+            <column autoIncrement="true" name="imageID" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="propertyID" type="int"/>
+            <column name="title" type="varchar(255)"/>
+            <column name="description" type="varchar(255)"/>
+            <column name="url" type="varchar(255)"/>
+        </createTable>
+
+    </changeSet>
+
+</databaseChangeLog>
